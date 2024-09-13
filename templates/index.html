@@ -1,19 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G10 Currencies Dashboard - Real-time FX Analytics</title>
+    <!-- Add meta description for SEO -->
+    <meta name="description" content="Professional G10 Currencies Dashboard with real-time data, advanced charts, and AI-powered insights for FX traders and investors.">
+    <!-- Add favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Add external CSS file -->
+    <link rel="stylesheet" href="static/main.css">
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 <body>
-    <div class="App">
-        <header class="App-header">
-            <img src="{{ url_for('static', filename='Octocat.png') }}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Flask
-            </p>
-            <p class="small">
-                Edit <code>templates/index.html</code> and refresh to see your changes!
-            </p>
-        </header>
-    </div>
-</body>
+    <header>
+        <h1><i class="fas fa-chart-line"></i> G10 Currencies Dashboard</h1>
+        <p id="lastUpdated">Last updated: <span></span></p>
+    </header>
 
+    <nav>
+        <a href="#mainContent"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#newsContainer"><i class="fas fa-newspaper"></i> News</a>
+        <a href="#alertContainer"><i class="fas fa-bell"></i> Alerts</a>
+        <a href="#chatbotContainer"><i class="fas fa-robot"></i> AI Assistant</a>
+        <a href="#" id="darkModeToggle"><i class="fas fa-moon"></i> Dark Mode</a>
+    </nav>
+
+    <div id="mainContent">
+        <!-- Date Picker -->
+        <div id="datePicker">
+            <label for="startDate">Start Date: </label>
+            <input type="date" id="startDate">
+            <label for="endDate">End Date: </label>
+            <input type="date" id="endDate">
+            <button id="updateButton">Update Charts</button>
+        </div>
+
+        <!-- Chart Containers -->
+        <div class="chartContainer">
+            <canvas id="currencyChart"></canvas>
+        </div>
+        <div class="chartContainer">
+            <canvas id="currencyLineChart"></canvas>
+        </div>
+        <div class="chartContainer">
+            <canvas id="currencyPieChart"></canvas>
+        </div>
+        <div class="chartContainer">
+            <canvas id="currencyRadarChart"></canvas>
+        </div>
+    </div>
+
+    <div id="newsContainer">
+        <h2>Recent News</h2>
+        <div id="newsLoading">Loading news...</div>
+        <div id="newsFeed"></div>
+    </div>
+
+    <div id="alertContainer">
+        <h2>Set Price Alerts</h2>
+        <form id="alertForm">
+            <label for="currencySelect">Currency: </label>
+            <select id="currencySelect">
+                <option value="eur">EUR</option>
+                <option value="jpy">JPY</option>
+                <option value="gbp">GBP</option>
+                <option value="aud">AUD</option>
+                <option value="cad">CAD</option>
+                <option value="chf">CHF</option>
+                <option value="nzd">NZD</option>
+                <option value="nok">NOK</option>
+                <option value="sek">SEK</option>
+            </select>
+            <label for="threshold">Threshold (to USD): </label>
+            <input type="number" id="threshold" step="0.0001" placeholder="e.g., 1.1">
+            <button type="button" id="setAlertButton">Set Alert</button>
+        </form>
+        <div id="alertMessages"></div>
+    </div>
+
+    <div id="chatbotContainer">
+        <h2>AI Assistant</h2>
+        <div id="chatDisplay"></div>
+        <input type="text" id="userInput" placeholder="Ask me about G10 currencies...">
+        <button id="sendButton">Send</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 G10 Currencies Dashboard. All rights reserved.</p>
+        <p>Powered by <a href="#" target="_blank">Alex Proschkin</a></p>
+        <p><a href="#" target="_blank">Terms of Service</a> | <a href="#" target="_blank">Privacy Policy</a></p>
+    </footer>
+
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include Chart.js Zoom Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <!-- Include main JavaScript file -->
+    <script src="main.js"></script>
+</body>
 </html>
